@@ -39,7 +39,21 @@ public class Atm {
             throw new AccountException("Ur broke af");
     }
 
+    public double withdrawMoney(String userID, double amount) {
+        if(accounts.containsKey(userID)) {
+            if(accounts.get(userID) < amount)
+                throw new AccountException("ur broke af");
+            else {
+                double currAmount = accounts.get(userID);
+                accounts.put(userID, currAmount - amount);
+                return amount;
+            }
+        }
+        else
+            throw new AccountException("Account not found");
+    }
 
+    
 }
 
 
