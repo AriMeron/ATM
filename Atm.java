@@ -53,7 +53,14 @@ public class Atm {
             throw new AccountException("Account not found");
     }
 
-    
+    public boolean transferMoney(String toAccount, String fromAccount, double amount) {
+        if(!accounts.containsKey(fromAccount) || !accounts.containsKey(toAccount))
+            throw new AccountException("Account not found");
+        if(withdrawMoney(fromAccount, amount) == amount && depositMoney(toAccount, amount) == amount)
+           return true;
+        else
+            return false;
+    }
 }
 
 
