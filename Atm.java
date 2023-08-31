@@ -9,10 +9,24 @@ public class Atm {
             accounts.put(userID, amount);
         }
         else{
-            AccountException ae = new AccountException("account already exists");
-            throw ae;
-        }
-            
+            throw new AccountException("account already exists");
+        }  
+    }
+
+    public void closeAccount(String userID) {
+        if(accounts.containsKey(userID) && accounts.get(userID) == 0) 
+            accounts.remove(userID);
+        else if(accounts.containsKey(userID) && accounts.get(userID) != 0)
+            throw new AccountException("You must withdraw your money before closing");
+        else
+            throw new AccountException("Account not found");
+    }
+
+    public double checkBalance(String userID) {
+        if(accounts.containsKey(userID))
+            return accounts.get(userID);
+        else
+            throw new AccountException("Account not found");
     }
 }
 
