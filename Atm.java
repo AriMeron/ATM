@@ -28,6 +28,18 @@ public class Atm {
         else
             throw new AccountException("Account not found");
     }
+
+    public double depositMoney(String userID, double depositAmount) {
+        if(accounts.containsKey(userID)) {
+            double currentAmount = accounts.get(userID);
+            accounts.put(userID, currentAmount+depositAmount);
+            return depositAmount;
+        }
+        else
+            throw new AccountException("Ur broke af");
+    }
+
+
 }
 
 
