@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class Atm {
@@ -60,6 +62,16 @@ public class Atm {
            return true;
         else
             return false;
+    }
+
+    public void audit() throws IOException {
+        PrintWriter pw = new PrintWriter("audit.txt");
+        for(HashMap.Entry<String, Double> entry : accounts.entrySet()) {
+            String key = entry.getKey();
+            double value = entry.getValue();
+            pw.print(key + ", " + value + "\n");
+        }
+        pw.close();
     }
 }
 
